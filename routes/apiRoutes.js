@@ -1,27 +1,27 @@
 
 const router = require('express').Router();
-const db = require("../models/Workout");
+const db = require("../models/Workout.js");
 
 
-router.get("/api/workouts", (req,res) => {
-    db.find({})
-        .then(dbWorkout => {
-            res.json(dbWorkout);
-        })
-        .catch(err => {
-            res.json(err);
-        });
-
+router.get("/api/workouts", function(req,res){
+    db.find({}, (error, data) => {
+        if (error) {
+            console.log(error)
+        } else {
+            res.json(data);
+        }
+    })
+        
 })
 
-module.exports = function(app) {
-
-    app.get("/api/authors", function(req,res) {
-
+router.post("/api/workouts", (req, res) => {
+    db.create({})
+    .then(dbWorkout => {
+        res.json(dbWorkout);
     })
+    .catch(err => {
+        res.json(err);
+    });
+})
 
-
-
-
-
-}
+module.exports = router;

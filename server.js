@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
-
+app.use(morgan("dev"))
 // const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
@@ -17,8 +17,7 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-app.use(require("./routes/htmlRoutes.js"));
-app.use(require("./routes/apiRoutes.js"));
+
 // Syncing our sequelize models and then startin
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
@@ -26,6 +25,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
   useFindAndModify: false
 });
 
+app.use(require("./routes/htmlRoutes.js"));
+app.use(require("./routes/apiRoutes.js"));
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
