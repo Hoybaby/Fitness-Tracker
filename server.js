@@ -12,7 +12,7 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/htmlRoutes.js")(app);
+require("./routes/htmlRoutes.js");
 
 // Syncing our sequelize models and then startin
 
