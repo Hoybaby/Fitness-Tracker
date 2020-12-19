@@ -31,7 +31,7 @@ db.on("error", error => {
 
 // Syncing our sequelize models and then startin
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessTracker", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
