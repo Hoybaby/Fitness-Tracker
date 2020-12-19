@@ -24,4 +24,20 @@ router.post("/api/workouts", (req, res) => {
     });
 })
 
+router.put("/api/workouts/:id", function (req, res) {
+    console.log("Added an Excercise")
+    db.findByIdAndUpdate(req.params.id,
+        { $push : {excercises: req.body}},
+        {new: true}
+    ).then(dbWorkout => {
+        res.json(dbWorkout);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+        
+
+
 module.exports = router;
